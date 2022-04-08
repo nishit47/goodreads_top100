@@ -21,7 +21,10 @@ with open('goodreads_top100.csv', 'w', encoding='utf8', newline='') as f:
         title=list.find('a', class_="bookTitle").span.text
         author=list.find('a', class_="authorName").span.text
         ratingString=(list.find('span', class_="minirating").text[1:5])
-        rating=float(ratingString)
+        try:
+            rating=float(ratingString)
+        except:
+            rating=4
         data=[ranking, title, author,rating]
         print(data)
         thewriter.writerow(data)
